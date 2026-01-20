@@ -16,4 +16,22 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  /** Period of main loop in milliseconds */
+  public static final double loopPeriodSecs = 0.02;
+
+  /** The robot being used */
+  public static final RobotType robotType = RobotType.XRP;
+
+  /** Whether to load a log file and run simulation replay */
+  public static final boolean isReplay = false;
+
+  /** Whether to publish and allow editing of tunable numbers */
+  public static final boolean tuningMode = true;
+
+  public enum RobotType {
+    XRP,
+    SIMBOT,
+    REALBOT
+  }
 }

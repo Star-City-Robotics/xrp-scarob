@@ -7,11 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.AutonomousDistance;
-import frc.robot.commands.AutonomousTime;
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.xrp.XRPOnBoardIO;
@@ -20,6 +15,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.AutonomousDistance;
+import frc.robot.commands.AutonomousTime;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.drive.Drive;
+import frc.robot.subsystems.drive.DriveIO;
+import frc.robot.subsystems.drive.DriveIOXRP;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -33,6 +36,8 @@ public class RobotContainer {
   private final XRPOnBoardIO m_onboardIO = new XRPOnBoardIO();
   private final Arm m_arm = new Arm();
 
+  private Drive drive;
+
   // Assumes a gamepad plugged into channel 0
   private final Joystick m_controller = new Joystick(0);
 
@@ -41,6 +46,32 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // Create subsystems and IO implementations based on the current robot.
+    if (!Constants.isReplay) {
+      switch (Constants.robotType) {
+        case XRP:
+          // XRP robot, instantiate XRP IO implementations
+          drive = new Drive(new DriveIOXRP());
+          drive = null;
+          break;
+
+        case SIMBOT:
+          // Simulated robot, instantiate sim IO implementations
+          // ...
+          break;
+
+        case REALBOT:
+          // Real robot, instantiate hardware IO implementations
+          // ...
+          break;
+      }
+    }
+
+    // Create any subsystems that were missed in the above section
+    if (drive == null) {
+      drive = new Drive(new DriveIO() {});
+    }
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -85,6 +116,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return m_chooser.getSelected();
+    // return Commands.none();
   }
 
   /**
