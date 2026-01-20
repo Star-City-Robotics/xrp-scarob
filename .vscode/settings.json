@@ -62,5 +62,22 @@
     "edu.wpi.first.math.**.struct.*",
     null
   ],
-  "java.dependency.enableDependencyCheckup": false
+  "java.dependency.enableDependencyCheckup": false,
+  "java.format.enabled": false,
+  "java.codeGeneration.generateComments": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.autoIndent": "full",
+  "spotlessGradle.format.enable": true,
+  "spotlessGradle.diagnostics.enable": false,
+  "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+  "[json]": {
+    "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
+  },
+  "[java]": {
+    "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
+  }
 }
