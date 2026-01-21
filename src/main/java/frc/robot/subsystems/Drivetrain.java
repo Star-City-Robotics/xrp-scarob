@@ -5,10 +5,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.util.sendable.SendableRegistry;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.xrp.XRPGyro;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -32,12 +30,6 @@ public class Drivetrain extends SubsystemBase {
   // Set up the differential drive controller
   private final DifferentialDrive m_diffDrive =
       new DifferentialDrive(m_leftMotor::set, m_rightMotor::set);
-
-  // Set up the XRPGyro
-  private final XRPGyro m_gyro = new XRPGyro();
-
-  // Set up the BuiltInAccelerometer
-  private final BuiltInAccelerometer m_accelerometer = new BuiltInAccelerometer();
 
   /** Creates a new Drivetrain. */
   public Drivetrain() {
@@ -82,65 +74,6 @@ public class Drivetrain extends SubsystemBase {
 
   public double getAverageDistanceInch() {
     return (getLeftDistanceInch() + getRightDistanceInch()) / 2.0;
-  }
-
-  /**
-   * The acceleration in the X-axis.
-   *
-   * @return The acceleration of the XRP along the X-axis in Gs
-   */
-  public double getAccelX() {
-    return m_accelerometer.getX();
-  }
-
-  /**
-   * The acceleration in the Y-axis.
-   *
-   * @return The acceleration of the XRP along the Y-axis in Gs
-   */
-  public double getAccelY() {
-    return m_accelerometer.getY();
-  }
-
-  /**
-   * The acceleration in the Z-axis.
-   *
-   * @return The acceleration of the XRP along the Z-axis in Gs
-   */
-  public double getAccelZ() {
-    return m_accelerometer.getZ();
-  }
-
-  /**
-   * Current angle of the XRP around the X-axis.
-   *
-   * @return The current angle of the XRP in degrees
-   */
-  public double getGyroAngleX() {
-    return m_gyro.getAngleX();
-  }
-
-  /**
-   * Current angle of the XRP around the Y-axis.
-   *
-   * @return The current angle of the XRP in degrees
-   */
-  public double getGyroAngleY() {
-    return m_gyro.getAngleY();
-  }
-
-  /**
-   * Current angle of the XRP around the Z-axis.
-   *
-   * @return The current angle of the XRP in degrees
-   */
-  public double getGyroAngleZ() {
-    return m_gyro.getAngleZ();
-  }
-
-  /** Reset the gyro. */
-  public void resetGyro() {
-    m_gyro.reset();
   }
 
   @Override

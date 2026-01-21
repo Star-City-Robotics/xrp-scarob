@@ -20,6 +20,7 @@ import frc.robot.commands.AutonomousTime;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.drive.Drive;
+import frc.robot.subsystems.gyro.Gyro;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -35,6 +36,7 @@ public class RobotContainer {
   private final Arm m_arm = new Arm();
 
   private Drive drive;
+  private Gyro gyro;
 
   // Assumes a gamepad plugged into channel 0
   private final Joystick m_controller = new Joystick(0);
