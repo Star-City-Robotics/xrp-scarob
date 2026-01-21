@@ -52,7 +52,7 @@ public class RobotContainer {
       switch (Constants.robotType) {
         case XRP:
           // XRP robot, instantiate XRP IO implementations
-          // drive = new Drive(new DriveIOXRP());
+          // drive = new Drive(new DrivetrainIOXRP());
           drive = null;
           break;
 
@@ -70,7 +70,7 @@ public class RobotContainer {
 
     // Create any subsystems that were missed in the above section
     if (drive == null) {
-      // drive = new Drive(new DriveIO() {});
+      // drive = new Drive(new DrivetrainIO() {});
     }
 
     // Setup SmartDashboard options

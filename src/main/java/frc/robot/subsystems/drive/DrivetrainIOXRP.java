@@ -10,16 +10,16 @@ package frc.robot.subsystems.drive;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 
-public class DriveIOXRP implements DriveIO {
+public class DrivetrainIOXRP implements DrivetrainIO {
   private final XRPMotor leftMotor = new XRPMotor(0);
   private final XRPMotor rightMotor = new XRPMotor(1);
 
-  public DriveIOXRP() {
+  public DrivetrainIOXRP() {
     rightMotor.setInverted(true);
   }
 
   @Override
-  public void updateInputs(DriveIOInputs inputs) {}
+  public void updateInputs(DrivetrainIOInputs inputs) {}
 
   @Override
   public void setVoltage(double leftVolts, double rightVolts) {

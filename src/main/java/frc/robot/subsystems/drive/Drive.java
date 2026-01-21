@@ -13,8 +13,8 @@ import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
 
 public class Drive extends SubsystemBase {
-  private final DriveIO io;
-  private final DriveIOInputsAutoLogged inputs = new DriveIOInputsAutoLogged();
+  private final DrivetrainIO io;
+  private final DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
 
   /**
    * IMPORTANT: We never use HID objects like this in a subsystem class. This code is provided as a
@@ -23,7 +23,7 @@ public class Drive extends SubsystemBase {
   private final GenericHID keyboard = new GenericHID(0);
 
   /** Creates a new Drive. */
-  public Drive(DriveIO io) {
+  public Drive(DrivetrainIO io) {
     this.io = io;
   }
 

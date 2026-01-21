@@ -9,12 +9,12 @@ package frc.robot.subsystems.drive;
 
 import org.littletonrobotics.junction.AutoLog;
 
-public interface DriveIO {
+public interface DrivetrainIO {
   @AutoLog
-  public static class DriveIOInputs {}
+  public static class DrivetrainIOInputs {}
 
   /** Updates the set of loggable inputs. */
-  public default void updateInputs(DriveIOInputs inputs) {}
+  public default void updateInputs(DrivetrainIOInputs inputs) {}
 
   /** Run open loop at the specified voltage. */
   public default void setVoltage(double leftVolts, double rightVolts) {}
