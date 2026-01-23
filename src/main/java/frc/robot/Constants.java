@@ -13,7 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class OperatorConstants {
+  public static final class KOperator {
     public static final int kDriverControllerPort = 0;
   }
 
@@ -33,5 +33,30 @@ public final class Constants {
     XRP,
     SIMBOT,
     REALBOT
+  }
+
+  public static final class KDrivetrain {
+    // motor device numbers. we use L/R, but 3/4 can also be added
+    public static final int kMotorLDeviceNum = 0;
+    public static final int kMotorRDeviceNum = 1;
+    public static final int kMotor3DeviceNum = 2;
+    public static final int kMotor4DeviceNum = 3;
+
+    // motor encoder device numbers. "channelA" and "channelB"
+    //
+    // DIOLeftInputID = (deviceNum*2) + 4; DIORightInputID = (deviceNum*2) + 5;
+    public static final int kEncoderLDeviceNum = 0;
+    public static final int kEncoderRDeviceNum = 1;
+
+    public static final double kGearRatio =
+        (30.0 / 14.0) * (28.0 / 16.0) * (36.0 / 9.0) * (26.0 / 8.0); // 48.75:1
+
+    public static final double kCountsPerMotorShaftRev = 12.0;
+    public static final double kCountsPerRevolution = kCountsPerMotorShaftRev * kGearRatio; // 585.0
+
+    public static final double kWheelDiameterInch = 2.3622; // 60 mm
+
+    public static final double kDistancePerPulse =
+        Math.PI * kWheelDiameterInch / kCountsPerRevolution;
   }
 }

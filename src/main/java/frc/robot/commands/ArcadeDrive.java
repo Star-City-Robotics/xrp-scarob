@@ -5,11 +5,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.drive.Drive;
 import java.util.function.Supplier;
 
 public class ArcadeDrive extends Command {
-  private final Drivetrain m_drivetrain;
+  private final Drive m_drive;
   private final Supplier<Double> m_xaxisSpeedSupplier;
   private final Supplier<Double> m_zaxisRotateSupplier;
 
@@ -22,13 +22,11 @@ public class ArcadeDrive extends Command {
    * @param zaxisRotateSupplier Lambda supplier of rotational speed
    */
   public ArcadeDrive(
-      Drivetrain drivetrain,
-      Supplier<Double> xaxisSpeedSupplier,
-      Supplier<Double> zaxisRotateSupplier) {
-    m_drivetrain = drivetrain;
+      Drive drive, Supplier<Double> xaxisSpeedSupplier, Supplier<Double> zaxisRotateSupplier) {
+    m_drive = drive;
     m_xaxisSpeedSupplier = xaxisSpeedSupplier;
     m_zaxisRotateSupplier = zaxisRotateSupplier;
-    addRequirements(drivetrain);
+    addRequirements(m_drive);
   }
 
   // Called when the command is initially scheduled.
@@ -38,7 +36,7 @@ public class ArcadeDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get(), m_zaxisRotateSupplier.get());
+    m_drive.arcadeDrive(m_xaxisSpeedSupplier.get(), m_zaxisRotateSupplier.get());
   }
 
   // Called once the command ends or is interrupted.

@@ -9,11 +9,16 @@ package frc.robot.subsystems.drive;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
 
 public class Drive extends SubsystemBase {
-  private final DriveIO io;
-  private final DriveIOInputsAutoLogged inputs = new DriveIOInputsAutoLogged();
+
+  private final DrivetrainIO drivetrainIO;
+  private final DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
+
+  private final GyroIO gyroIO;
+  private final GyroIOInputsAutoLogged gyroInputs = new GyroIOInputsAutoLogged();
 
   /**
    * IMPORTANT: We never use HID objects like this in a subsystem class. This code is provided as a
@@ -22,8 +27,9 @@ public class Drive extends SubsystemBase {
   private final GenericHID keyboard = new GenericHID(0);
 
   /** Creates a new Drive. */
-  public Drive(DriveIO io) {
-    this.io = io;
+  public Drive(GyroIO gyroIO, DrivetrainIO drivetrainIO) {
+    this.drivetrainIO = drivetrainIO;
+    this.gyroIO = gyroIO;
   }
 
   @Override
@@ -34,16 +40,33 @@ public class Drive extends SubsystemBase {
 
   /** Run open loop based on percentages. */
   public void drivePercent(double left, double right) {
-    io.setVoltage(left * 6.0, right * 6.0);
+    drivetrainIO.setVoltage(left * 6.0, right * 6.0);
   }
 
   /** Run open loop based on voltages. */
   public void driveVolts(double leftVolts, double rightVolts) {
-    io.setVoltage(leftVolts, rightVolts);
+    drivetrainIO.setVoltage(leftVolts, rightVolts);
   }
 
   /** Stops the drive. */
   public void stop() {
-    io.setVoltage(0.0, 0.0);
+    drivetrainIO.setVoltage(0.0, 0.0);
+  }
+
+  @Override
+  public void periodic() {
+    gyroIO.updateInputs(gyroInputs);
+    Logger.processInputs("Drive/Gyro", gyroInputs);
+    drivetrainIO.updateInputs(inputs);
+    Logger.processInputs("Drive", inputs);
+  }
+
+  public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
+    this.drivetrainIO.arcadeDrive(xaxisSpeed, zaxisRotate);
+  }
+
+  // TODO: refactor with Lombok to properly use "delegate" pattern with @Delegate
+  public void resetEncoders() {
+    this.drivetrainIO.resetEncoders();
   }
 }

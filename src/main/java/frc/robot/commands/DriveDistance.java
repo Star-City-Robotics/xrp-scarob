@@ -5,10 +5,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.drive.Drive;
 
 public class DriveDistance extends Command {
-  private final Drivetrain m_drive;
+  private final Drive m_drive;
   private final double m_distance;
   private final double m_speed;
 
@@ -20,7 +20,7 @@ public class DriveDistance extends Command {
    * @param inches The number of inches the robot will drive
    * @param drive The drivetrain subsystem on which this command will run
    */
-  public DriveDistance(double speed, double inches, Drivetrain drive) {
+  public DriveDistance(double speed, double inches, Drive drive) {
     m_distance = inches;
     m_speed = speed;
     m_drive = drive;
@@ -50,6 +50,8 @@ public class DriveDistance extends Command {
   @Override
   public boolean isFinished() {
     // Compare distance travelled from start to desired distance
-    return Math.abs(m_drive.getAverageDistanceInch()) >= m_distance;
+    // return Math.abs(m_drive.getAverageDistanceInch()) >= m_distance;
+    // TODO: fix implementation!
+    return Math.abs(0) >= m_distance;
   }
 }
