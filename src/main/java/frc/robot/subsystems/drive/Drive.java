@@ -13,7 +13,8 @@ import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
 
 public class Drive extends SubsystemBase {
-  private final DrivetrainIO io;
+
+  private final DrivetrainIO drivetrainIO;
   private final DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
 
   /**
@@ -24,7 +25,7 @@ public class Drive extends SubsystemBase {
 
   /** Creates a new Drive. */
   public Drive(DrivetrainIO io) {
-    this.io = io;
+    this.drivetrainIO = drivetrainIO;
   }
 
   @Override
@@ -35,16 +36,22 @@ public class Drive extends SubsystemBase {
 
   /** Run open loop based on percentages. */
   public void drivePercent(double left, double right) {
-    io.setVoltage(left * 6.0, right * 6.0);
+    drivetrainIO.setVoltage(left * 6.0, right * 6.0);
   }
 
   /** Run open loop based on voltages. */
   public void driveVolts(double leftVolts, double rightVolts) {
-    io.setVoltage(leftVolts, rightVolts);
+    drivetrainIO.setVoltage(leftVolts, rightVolts);
   }
 
   /** Stops the drive. */
   public void stop() {
-    io.setVoltage(0.0, 0.0);
+    drivetrainIO.setVoltage(0.0, 0.0);
+  }
+
+  @Override
+  public void periodic() {
+    drivetrainIO.updateInputs(inputs);
+    Logger.processInputs("Drive", inputs);
   }
 }

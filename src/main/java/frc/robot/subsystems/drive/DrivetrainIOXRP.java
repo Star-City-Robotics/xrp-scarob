@@ -9,10 +9,14 @@ package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
+import frc.robot.util.XRPEncoder;
+import frc.robot.Constants;
 
 public class DrivetrainIOXRP implements DrivetrainIO {
-  private final XRPMotor leftMotor = new XRPMotor(0);
-  private final XRPMotor rightMotor = new XRPMotor(1);
+  private final XRPMotor leftMotor = new XRPMotor(Constants.KDrivetrain.kMotorLDeviceNum);
+  private final XRPMotor rightMotor = new XRPMotor(Constants.KDrivetrain.kMotorRDeviceNum);
+  private final XRPEncoder leftEncoder = new XRPEncoder(Constants.KDrivetrain.kEncoderLDeviceNum);
+  private final XRPEncoder rightEncoder = new XRPEncoder(Constants.KDrivetrain.kEncoderRDeviceNum);
 
   public DrivetrainIOXRP() {
     rightMotor.setInverted(true);
