@@ -45,9 +45,9 @@ public class ControllerMappings {
         Map<String, Integer> xboxAxes = new HashMap<>();
         xboxAxes.put("LeftX", 0);
         xboxAxes.put("LeftY", 1);
-        xboxAxes.put("RightX", 2);
-        xboxAxes.put("RightY", 3);
-        xboxAxes.put("RightTrigger", 4);
+        xboxAxes.put("RightX", 3);
+        xboxAxes.put("RightY", 4);
+        xboxAxes.put("RightTrigger", 2);
         xboxAxes.put("LeftTrigger", 5);
 
         XBOX_MAPPING = new ControllerMapping(xboxButtons, xboxAxes);
@@ -64,6 +64,7 @@ public class ControllerMappings {
         dualSenseButtons.put("LeftStick", 10);
         dualSenseButtons.put("RightStick", 11);
 
+        // NOTE: untested, may need to be adjusted
         Map<String, Integer> dualSenseAxes = new HashMap<>();
         dualSenseAxes.put("LeftX", 0);
         dualSenseAxes.put("LeftY", 1);

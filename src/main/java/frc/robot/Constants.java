@@ -15,6 +15,8 @@ package frc.robot;
 public final class Constants {
   public static final class KOperator {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
+  }
 
   public class KController {
     public static final SimControllerType kSimControllerType = SimControllerType.XBOX;
@@ -22,7 +24,8 @@ public final class Constants {
 
     public enum SimControllerType {
       XBOX,
-      DUAL_SENSE
+      DUAL_SENSE,
+      KEYBOARD
     }
   }
 
