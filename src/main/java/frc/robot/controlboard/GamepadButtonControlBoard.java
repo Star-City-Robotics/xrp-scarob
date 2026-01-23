@@ -22,113 +22,125 @@
 
 package frc.robot.controlboard;
 
-import frc.robot.Constants.KOperator;
-import frc.robot.Robot;
-import frc.lib.controller.CommandSimXboxController;
-// import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.lib.controller.CommandSimXboxController;
+// import edu.wpi.first.math.filter.Debouncer.DebounceType;
+import frc.robot.Constants.KOperator;
+import frc.robot.Robot;
 
 public class GamepadButtonControlBoard implements IButtonControlBoard {
-    private static GamepadButtonControlBoard instance = null;
+  private static GamepadButtonControlBoard instance = null;
 
-    public static GamepadButtonControlBoard getInstance() {
-        if (instance == null) {
-            instance = new GamepadButtonControlBoard();
-        }
-        return instance;
+  public static GamepadButtonControlBoard getInstance() {
+    if (instance == null) {
+      instance = new GamepadButtonControlBoard();
     }
+    return instance;
+  }
 
-    private final CommandXboxController controller;
+  private final CommandXboxController controller;
 
-    @SuppressWarnings("unused")
-    private GamepadButtonControlBoard() {
+  @SuppressWarnings("unused")
+  private GamepadButtonControlBoard() {
         if (Constants.kForceDriveGamepad
                 || DriverStation.getJoystickIsXbox(Constants.kDriveGamepadPort)) {
-            if (Robot.isSimulation()) {
+      if (Robot.isSimulation()) {
                 controller = new CommandSimXboxController(Constants.kDriveGamepadPort);
-            } else {
+      } else {
                 controller = new CommandXboxController(Constants.kDriveGamepadPort);
-            }
+      }
             additionalController =
                     new CommandXboxController(Constants.kGamepadAdditionalControllerPort);
-        } else {
+    } else {
             controller = new CommandXboxController(Constants.kOperatorControllerPort);
-        }
     }
-    public Trigger leftStick() {
-        return controller.leftStick();
-    }
+  }
 
-    @Override
-    public Trigger rightStick() {
-        return controller.rightStick();
-    }
+  @Override
+  public Trigger leftStick() {
+    return controller.leftStick();
+  }
 
-    @Override
-    public Trigger leftBumper() {
-        return controller.leftBumper();
-    }
+  @Override
+  public Trigger rightStick() {
+    return controller.rightStick();
+  }
 
-    @Override
-    public Trigger rightBumper() {
-        return controller.rightBumper();
-    }
+  @Override
+  public Trigger leftBumper() {
+    return controller.leftBumper();
+  }
 
-    @Override
-    public Trigger leftTrigger() {
-        return controller.leftBumper();
-    }
+  @Override
+  public Trigger rightBumper() {
+    return controller.rightBumper();
+  }
 
-    @Override
-    public Trigger rightTrigger() {
-        return controller.rightBumper();
-    }
+  @Override
+  public Trigger leftTrigger() {
+    return controller.leftBumper();
+  }
 
-    @Override
-    public Trigger a() {
-        return controller.a();
-    }
+  @Override
+  public Trigger rightTrigger() {
+    return controller.rightBumper();
+  }
 
-    @Override
-    public Trigger b() {
-        return controller.b();
-    }
+  @Override
+  public Trigger a() {
+    return controller.a();
+  }
 
-    @Override
-    public Trigger x() {
-        return controller.x();
-    }
+  @Override
+  public Trigger b() {
+    return controller.b();
+  }
 
-    @Override
-    public Trigger y() {
-        return controller.y();
-    }
+  @Override
+  public Trigger x() {
+    return controller.x();
+  }
 
-    @Override
-    public Trigger povUp() {
-        return controller.povUp();
-    }
+  @Override
+  public Trigger y() {
+    return controller.y();
+  }
 
-    @Override
-    public Trigger povDown() {
-        return controller.povDown();
-    }
+  @Override
+  public Trigger povUp() {
+    return controller.povUp();
+  }
 
-    @Override
-    public Trigger povLeft() {
-        return controller.povLeft();
-    }
+  @Override
+  public Trigger povDown() {
+    return controller.povDown();
+  }
 
-    @Override
-    public Trigger povRight() {
-        return controller.povRight();
-    }
+  @Override
+  public Trigger povLeft() {
+    return controller.povLeft();
+  }
 
-    @Override
-    public void setRumble(boolean rumble) {
-        controller.getHID().setRumble(RumbleType.kBothRumble, rumble ? 1 : 0);
-    }
+  @Override
+  public Trigger povRight() {
+    return controller.povRight();
+  }
+
+  @Override
+  public Trigger back() {
+    return controller.back();
+  }
+
+  @Override
+  public Trigger start() {
+    return controller.start();
+  }
+
+  @Override
+  public void setRumble(boolean rumble) {
+    controller.getHID().setRumble(RumbleType.kBothRumble, rumble ? 1 : 0);
+  }
 }

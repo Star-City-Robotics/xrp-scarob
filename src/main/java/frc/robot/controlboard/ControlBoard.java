@@ -27,163 +27,163 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class ControlBoard implements IDriveControlBoard, IButtonControlBoard {
-    private static ControlBoard instance = null;
+  private static ControlBoard instance = null;
 
-    public static ControlBoard getInstance() {
-        if (instance == null) {
-            instance = new ControlBoard();
-        }
-        return instance;
+  public static ControlBoard getInstance() {
+    if (instance == null) {
+      instance = new ControlBoard();
     }
+    return instance;
+  }
 
-    private final IDriveControlBoard driveControlBoard;
-    private final IButtonControlBoard buttonControlBoard;
+  private final IDriveControlBoard driveControlBoard;
+  private final IButtonControlBoard buttonControlBoard;
 
-    private ControlBoard() {
-        driveControlBoard = GamepadDriveControlBoard.getInstance();
-        buttonControlBoard = GamepadButtonControlBoard.getInstance();
-    }
+  private ControlBoard() {
+    driveControlBoard = GamepadDriveControlBoard.getInstance();
+    buttonControlBoard = GamepadButtonControlBoard.getInstance();
+  }
 
-    // =============================================
-    // Driver
+  // =============================================
+  // Driver
 
-    // ---------------------------------------------
-    // Driver Gamepad: right stick
+  // ---------------------------------------------
+  // Driver Gamepad: right stick
 
-    @Override
-    public double getThrottle() {
-        return driveControlBoard.getThrottle();
-    }
+  @Override
+  public double getThrottle() {
+    return driveControlBoard.getThrottle();
+  }
 
-    @Override
-    public double getStrafe() {
-        return driveControlBoard.getStrafe();
-    }
+  @Override
+  public double getStrafe() {
+    return driveControlBoard.getStrafe();
+  }
 
-    // ---------------------------------------------
-    // Driver Gamepad: right stick
+  // ---------------------------------------------
+  // Driver Gamepad: right stick
 
-    @Override
-    public double getRotation() {
-        return driveControlBoard.getRotation();
-    }
+  @Override
+  public double getRotation() {
+    return driveControlBoard.getRotation();
+  }
 
-    @Override
-    public double getRotationY() {
-        return driveControlBoard.getRotationY();
-    }
+  @Override
+  public double getRotationY() {
+    return driveControlBoard.getRotationY();
+  }
 
-    // ---------------------------------------------
-    // Driver Gamepad: reset gyro
+  // ---------------------------------------------
+  // Driver Gamepad: reset gyro
 
-    @Override
-    public Trigger resetGyro() {
-        return driveControlBoard.resetGyro();
-    }
+  @Override
+  public Trigger resetGyro() {
+    return driveControlBoard.resetGyro();
+  }
 
-    // =============================================
-    // Operator
+  // =============================================
+  // Operator
 
-    // ---------------------------------------------
-    // Operator Gamepad: Joysticks
-    @Override
-    public Trigger leftStick() {
-        return buttonControlBoard.leftStick();
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: Joysticks
+  @Override
+  public Trigger leftStick() {
+    return buttonControlBoard.leftStick();
+  }
 
-    @Override
-    public Trigger rightStick() {
-        return buttonControlBoard.rightStick();
-    }
-    
-    // ---------------------------------------------
-    // Operator Gamepad: Bumpers
-    @Override
-    public Trigger leftBumper() {
-        return buttonControlBoard.leftBumper();
-    }
+  @Override
+  public Trigger rightStick() {
+    return buttonControlBoard.rightStick();
+  }
 
-    @Override
-    public Trigger rightBumper() {
-        return buttonControlBoard.rightBumper();
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: Bumpers
+  @Override
+  public Trigger leftBumper() {
+    return buttonControlBoard.leftBumper();
+  }
 
-    // ---------------------------------------------
-    // Operator Gamepad: Triggers
-    @Override
-    public Trigger leftTrigger() {
-        return buttonControlBoard.leftTrigger();
-    }
+  @Override
+  public Trigger rightBumper() {
+    return buttonControlBoard.rightBumper();
+  }
 
-    @Override
-    public Trigger rightTrigger() {
-        return buttonControlBoard.rightTrigger();
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: Triggers
+  @Override
+  public Trigger leftTrigger() {
+    return buttonControlBoard.leftTrigger();
+  }
 
-    // ---------------------------------------------
-    // Operator Gamepad: a b x y
-    @Override
-    public Trigger a() {
-        return buttonControlBoard.a();
-    }
+  @Override
+  public Trigger rightTrigger() {
+    return buttonControlBoard.rightTrigger();
+  }
 
-    @Override
-    public Trigger b() {
-        return buttonControlBoard.b();
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: a b x y
+  @Override
+  public Trigger a() {
+    return buttonControlBoard.a();
+  }
 
-    @Override
-    public Trigger x() {
-        return buttonControlBoard.x();
-    }
+  @Override
+  public Trigger b() {
+    return buttonControlBoard.b();
+  }
 
-    @Override
-    public Trigger y() {
-        return buttonControlBoard.y();
-    }
+  @Override
+  public Trigger x() {
+    return buttonControlBoard.x();
+  }
 
-    // ---------------------------------------------
-    // Operator Gamepad: povUp povDown povLeft povRight
-    @Override
-    public Trigger povUp() {
-        return buttonControlBoard.povUp();
-    }
+  @Override
+  public Trigger y() {
+    return buttonControlBoard.y();
+  }
 
-    @Override
-    public Trigger povDown() {
-        return buttonControlBoard.povDown();
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: povUp povDown povLeft povRight
+  @Override
+  public Trigger povUp() {
+    return buttonControlBoard.povUp();
+  }
 
-    @Override
-    public Trigger povLeft() {
-        return buttonControlBoard.povLeft();
-    }
+  @Override
+  public Trigger povDown() {
+    return buttonControlBoard.povDown();
+  }
 
-    @Override
-    public Trigger povRight() {
-        return buttonControlBoard.povRight();
-    }
+  @Override
+  public Trigger povLeft() {
+    return buttonControlBoard.povLeft();
+  }
 
-    // ---------------------------------------------
-    // Operator Gamepad: start back
-    @Override
-    public Trigger start() {
-        return buttonControlBoard.start();
-    }
+  @Override
+  public Trigger povRight() {
+    return buttonControlBoard.povRight();
+  }
 
-    @Override
-    public Trigger back() {
-        return buttonControlBoard.back();
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: start back
+  @Override
+  public Trigger start() {
+    return buttonControlBoard.start();
+  }
 
-    // ---------------------------------------------
-    // Operator Gamepad: rumble
-    @Override
-    public void setRumble(boolean rumble) {
-        buttonControlBoard.setRumble(rumble);
-    }
+  @Override
+  public Trigger back() {
+    return buttonControlBoard.back();
+  }
 
-    public Command rumble() {
-        return Commands.startEnd(() -> setRumble(true), () -> setRumble(false));
-    }
+  // ---------------------------------------------
+  // Operator Gamepad: rumble
+  @Override
+  public void setRumble(boolean rumble) {
+    buttonControlBoard.setRumble(rumble);
+  }
+
+  public Command rumble() {
+    return Commands.startEnd(() -> setRumble(true), () -> setRumble(false));
+  }
 }
