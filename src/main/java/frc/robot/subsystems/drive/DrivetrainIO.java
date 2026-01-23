@@ -11,7 +11,16 @@ import org.littletonrobotics.junction.AutoLog;
 
 public interface DrivetrainIO {
   @AutoLog
-  public static class DrivetrainIOInputs {}
+  public static class DrivetrainIOInputs {
+    public int leftEncoderCount = 0;
+    public int rightEncoderCount = 0;
+    public double leftDistance = 0.0;
+    public double rightDistance = 0.0;
+    public double leftVelocity = 0.0;
+    public double rightVelocity = 0.0;
+    public double leftVolts = 0.0;
+    public double rightVolts = 0.0;
+  }
 
   /** Updates the set of loggable inputs. */
   public default void updateInputs(DrivetrainIOInputs inputs) {}
@@ -20,4 +29,6 @@ public interface DrivetrainIO {
   public default void setVoltage(double leftVolts, double rightVolts) {}
 
   public default void resetEncoders() {}
+
+  public default void arcadeDrive(double xaxisSpeed, double zaxisRotate) {}
 }

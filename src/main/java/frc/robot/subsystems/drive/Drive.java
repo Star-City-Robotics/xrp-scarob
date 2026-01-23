@@ -60,4 +60,13 @@ public class Drive extends SubsystemBase {
     drivetrainIO.updateInputs(inputs);
     Logger.processInputs("Drive", inputs);
   }
+
+  public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
+    this.drivetrainIO.arcadeDrive(xaxisSpeed, zaxisRotate);
+  }
+
+  // TODO: refactor with Lombok to properly use "delegate" pattern with @Delegate
+  public void resetEncoders() {
+    this.drivetrainIO.resetEncoders();
+  }
 }

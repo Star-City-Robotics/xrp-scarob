@@ -18,7 +18,6 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousDistance;
 import frc.robot.commands.AutonomousTime;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.drive.DrivetrainIOXRP;
 import frc.robot.subsystems.drive.GyroIOXRP;
@@ -32,11 +31,9 @@ import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivetrain m_drivetrain = new Drivetrain();
   private final XRPOnBoardIO m_onboardIO = new XRPOnBoardIO();
   private final Arm m_arm = new Arm();
-
-  private Drive drive;
+  private final Drive drive;
 
   // Assumes a gamepad plugged into channel 0
   private final Joystick m_controller = new Joystick(0);
@@ -57,24 +54,29 @@ public class RobotContainer {
 
         case SIMBOT:
           // Simulated robot, instantiate sim IO implementations
-          // ...
+          // TODO: replace with SIMBOT implementation later
+          drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
           break;
 
         case REALBOT:
           // Real robot, instantiate hardware IO implementations
-          // ...
+          // TODO: replace with REALBOT implementation later
+          drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
+          break;
+
+        default:
+          // Create any subsystems that were missed in the above section
+          drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
           break;
       }
-    }
-
-    // Create any subsystems that were missed in the above section
-    if (drive == null) {
+    } else {
+      // TODO: handle (Constants.isReplay == true)
       drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
     }
 
     // Setup SmartDashboard options
-    m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
-    m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
+    m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(drive));
+    m_chooser.addOption("Auto Routine Time", new AutonomousTime(drive));
     // autoChooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", m_chooser);
 
@@ -91,7 +93,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Default command is arcade drive. This will run unless another command
     // is scheduled over it.
-    m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
+    drive.setDefaultCommand(getArcadeDriveCommand());
 
     // Example of how to use the onboard IO
     Trigger userButton = new Trigger(m_onboardIO::getUserButtonPressed);
@@ -127,6 +129,6 @@ public class RobotContainer {
    */
   public Command getArcadeDriveCommand() {
     return new ArcadeDrive(
-        m_drivetrain, () -> -m_controller.getRawAxis(1), () -> -m_controller.getRawAxis(2));
+        drive, () -> -m_controller.getRawAxis(1), () -> -m_controller.getRawAxis(2));
   }
 }

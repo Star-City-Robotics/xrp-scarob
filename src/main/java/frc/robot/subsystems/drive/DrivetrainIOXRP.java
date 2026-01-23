@@ -8,6 +8,8 @@
 package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.util.sendable.SendableRegistry;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import frc.robot.Constants;
 import frc.robot.util.XRPEncoder;
@@ -18,7 +20,20 @@ public class DrivetrainIOXRP implements DrivetrainIO {
   private final XRPEncoder leftEncoder = new XRPEncoder(Constants.KDrivetrain.kEncoderLDeviceNum);
   private final XRPEncoder rightEncoder = new XRPEncoder(Constants.KDrivetrain.kEncoderRDeviceNum);
 
+  private boolean closedLoop = false;
+  private double leftVolts = 0.0;
+  private double rightVolts = 0.0;
+
+  // Set up the differential drive controller
+  private final DifferentialDrive diffDrive =
+      new DifferentialDrive(leftMotor::set, rightMotor::set);
+
   public DrivetrainIOXRP() {
+    closedLoop = false;
+
+    SendableRegistry.addChild(diffDrive, leftMotor);
+    SendableRegistry.addChild(diffDrive, rightMotor);
+
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
@@ -32,7 +47,16 @@ public class DrivetrainIOXRP implements DrivetrainIO {
   }
 
   @Override
-  public void updateInputs(DrivetrainIOInputs inputs) {}
+  public void updateInputs(DrivetrainIOInputs inputs) {
+    inputs.leftEncoderCount = leftEncoder.get();
+    inputs.rightEncoderCount = rightEncoder.get();
+    inputs.leftVelocity = leftEncoder.getRate();
+    inputs.rightVelocity = rightEncoder.getRate();
+    inputs.leftDistance = leftEncoder.getDistance();
+    inputs.rightDistance = rightEncoder.getDistance();
+    inputs.leftVolts = leftVolts;
+    inputs.rightVolts = rightVolts;
+  }
 
   @Override
   public void setVoltage(double leftVolts, double rightVolts) {
@@ -46,5 +70,9 @@ public class DrivetrainIOXRP implements DrivetrainIO {
   public void resetEncoders() {
     leftEncoder.reset();
     rightEncoder.reset();
+  }
+
+  public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
+    diffDrive.arcadeDrive(xaxisSpeed, zaxisRotate);
   }
 }
