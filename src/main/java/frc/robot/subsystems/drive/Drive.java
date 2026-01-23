@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
+// import org.littletonrobotics.junction.AutoLogOutput;
 
 public class Drive extends SubsystemBase {
 
@@ -30,12 +31,6 @@ public class Drive extends SubsystemBase {
   public Drive(GyroIO gyroIO, DrivetrainIO drivetrainIO) {
     this.drivetrainIO = drivetrainIO;
     this.gyroIO = gyroIO;
-  }
-
-  @Override
-  public void periodic() {
-    io.updateInputs(inputs);
-    Logger.processInputs("Drive", inputs);
   }
 
   /** Run open loop based on percentages. */
