@@ -44,6 +44,12 @@ public class ControlBoard implements IDriveControlBoard, IButtonControlBoard {
         buttonControlBoard = GamepadButtonControlBoard.getInstance();
     }
 
+    // =============================================
+    // Driver
+
+    // ---------------------------------------------
+    // Driver Gamepad: right stick
+
     @Override
     public double getThrottle() {
         return driveControlBoard.getThrottle();
@@ -53,6 +59,9 @@ public class ControlBoard implements IDriveControlBoard, IButtonControlBoard {
     public double getStrafe() {
         return driveControlBoard.getStrafe();
     }
+
+    // ---------------------------------------------
+    // Driver Gamepad: right stick
 
     @Override
     public double getRotation() {
@@ -64,111 +73,19 @@ public class ControlBoard implements IDriveControlBoard, IButtonControlBoard {
         return driveControlBoard.getRotationY();
     }
 
+    // ---------------------------------------------
+    // Driver Gamepad: reset gyro
+
     @Override
     public Trigger resetGyro() {
         return driveControlBoard.resetGyro();
     }
 
-    @Override
-    public Trigger getWantToXWheels() {
-        return buttonControlBoard.getWantToXWheels();
-    }
+    // =============================================
+    // Operator
 
-    @Override
-    public Trigger getWantToAutoAlign() {
-        return buttonControlBoard.getWantToAutoAlign();
-    }
-
-    @Override
-    public Trigger autoAlignReefIntake() {
-        return buttonControlBoard.autoAlignReefIntake();
-    }
-
-    @Override
-    public Trigger manualIntakeAlgae() {
-        return buttonControlBoard.manualIntakeAlgae();
-    }
-
-    @Override
-    public Trigger score() {
-        return buttonControlBoard.score();
-    }
-
-    @Override
-    public Trigger scoreBarge() {
-        return buttonControlBoard.scoreBarge();
-    }
-
-    @Override
-    public Trigger stow() {
-        return buttonControlBoard.stow();
-    }
-
-    @Override
-    public Trigger intake() {
-        return buttonControlBoard.intake();
-    }
-
-    @Override
-    public Trigger intakeFunnel() {
-        return buttonControlBoard.intakeFunnel();
-    }
-
-    @Override
-    public Trigger exhaust() {
-        return buttonControlBoard.exhaust();
-    }
-
-    @Override
-    public Trigger stageL1() {
-        return buttonControlBoard.stageL1();
-    }
-
-    @Override
-    public Trigger stageL2() {
-        return buttonControlBoard.stageL2();
-    }
-
-    @Override
-    public Trigger stageL3() {
-        return buttonControlBoard.stageL3();
-    }
-
-    @Override
-    public Trigger stageL4() {
-        return buttonControlBoard.stageL4();
-    }
-
-    @Override
-    public Trigger climb() {
-        return buttonControlBoard.climb();
-    }
-
-    @Override
-    public Trigger getCoralMode() {
-        return buttonControlBoard.getCoralMode();
-    }
-
-    @Override
-    public Trigger getAlgaeClimbMode() {
-        return buttonControlBoard.getAlgaeClimbMode();
-    }
-
-    @Override
-    public Trigger getCoralManualMode() {
-        return buttonControlBoard.getCoralManualMode();
-    }
-
-    @Override
-    public Trigger autoAlignLeft() {
-        return buttonControlBoard.autoAlignLeft();
-    }
-
-    @Override
-    public Trigger autoAlignRight() {
-        return buttonControlBoard.autoAlignRight();
-    }
-
+    // ---------------------------------------------
+    // Operator Gamepad: Joysticks
     @Override
     public Trigger leftStick() {
         return buttonControlBoard.leftStick();
@@ -178,25 +95,58 @@ public class ControlBoard implements IDriveControlBoard, IButtonControlBoard {
     public Trigger rightStick() {
         return buttonControlBoard.rightStick();
     }
+    
+    // ---------------------------------------------
+    // Operator Gamepad: Bumpers
+    @Override
+    public Trigger leftBumper() {
+        return buttonControlBoard.leftBumper();
+    }
 
+    @Override
+    public Trigger rightBumper() {
+        return buttonControlBoard.rightBumper();
+    }
+
+    // ---------------------------------------------
+    // Operator Gamepad: Triggers
+    @Override
+    public Trigger leftTrigger() {
+        return buttonControlBoard.leftTrigger();
+    }
+
+    @Override
+    public Trigger rightTrigger() {
+        return buttonControlBoard.rightTrigger();
+    }
+
+    // ---------------------------------------------
+    // Operator Gamepad: a b x y
+    @Override
+    public Trigger a() {
+        return buttonControlBoard.a();
+    }
+
+    @Override
+    public Trigger b() {
+        return buttonControlBoard.b();
+    }
+
+    @Override
+    public Trigger x() {
+        return buttonControlBoard.x();
+    }
+
+    @Override
+    public Trigger y() {
+        return buttonControlBoard.y();
+    }
+
+    // ---------------------------------------------
+    // Operator Gamepad: povUp povDown povLeft povRight
     @Override
     public Trigger povUp() {
         return buttonControlBoard.povUp();
-    }
-
-    @Override
-    public Trigger reefIntakeAlgae() {
-        return buttonControlBoard.reefIntakeAlgae();
-    }
-
-    @Override
-    public Trigger bargeManualStage() {
-        return buttonControlBoard.bargeManualStage();
-    }
-
-    @Override
-    public Trigger processorManualStage() {
-        return buttonControlBoard.processorManualStage();
     }
 
     @Override
@@ -214,41 +164,20 @@ public class ControlBoard implements IDriveControlBoard, IButtonControlBoard {
         return buttonControlBoard.povRight();
     }
 
+    // ---------------------------------------------
+    // Operator Gamepad: start back
     @Override
-    public Trigger setDefaultRobotWide() {
-        return buttonControlBoard.setDefaultRobotWide();
+    public Trigger start() {
+        return buttonControlBoard.start();
     }
 
     @Override
-    public Trigger setDefaultRobotTight() {
-        return buttonControlBoard.setDefaultRobotTight();
+    public Trigger back() {
+        return buttonControlBoard.back();
     }
 
-    @Override
-    public Trigger autoAlignFeeder() {
-        return buttonControlBoard.autoAlignFeeder();
-    }
-
-    @Override
-    public Trigger groundIntakeDeployManual() {
-        return buttonControlBoard.groundIntakeDeployManual();
-    }
-
-    @Override
-    public Trigger groundIntakeDeploySpinManual() {
-        return buttonControlBoard.groundIntakeDeploySpinManual();
-    }
-
-    @Override
-    public Trigger descoreManual() {
-        return buttonControlBoard.descoreManual();
-    }
-
-    @Override
-    public Trigger lollipopIntake() {
-        return buttonControlBoard.lollipopIntake();
-    }
-
+    // ---------------------------------------------
+    // Operator Gamepad: rumble
     @Override
     public void setRumble(boolean rumble) {
         buttonControlBoard.setRumble(rumble);

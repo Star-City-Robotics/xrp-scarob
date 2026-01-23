@@ -25,13 +25,13 @@ package frc.robot.controlboard;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public interface IDriveControlBoard {
-    double getThrottle();
+  double getThrottle();
 
-    double getStrafe();
+  double getStrafe();
 
-    double getRotation();
+  double getRotation();
 
-    double getRotationY();
+  double getRotationY();
 
-    Trigger resetGyro();
+  Trigger resetGyro();
 }

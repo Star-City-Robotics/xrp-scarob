@@ -22,59 +22,55 @@
 
 package frc.robot.controlboard;
 
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.lib.controller.CommandSimXboxController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.lib.controller.CommandSimXboxController;
+import frc.robot.Constants.KOperator;
+import frc.robot.Robot;
 
 public class GamepadDriveControlBoard implements IDriveControlBoard {
-    private static GamepadDriveControlBoard instance = null;
+  private static GamepadDriveControlBoard instance = null;
 
-    public static GamepadDriveControlBoard getInstance() {
-        if (instance == null) {
-            instance = new GamepadDriveControlBoard();
-        }
-
-        return instance;
+  public static GamepadDriveControlBoard getInstance() {
+    if (instance == null) {
+      instance = new GamepadDriveControlBoard();
     }
 
-    private final CommandXboxController controller;
+    return instance;
+  }
 
-    private GamepadDriveControlBoard() {
-        if (Robot.isSimulation()) {
-            controller = new CommandSimXboxController(Constants.kDriveGamepadPort);
-        } else {
-            controller = new CommandXboxController(Constants.kDriveGamepadPort);
-        }
-    }
+  private final CommandXboxController controller;
 
-    @Override
-    public double getThrottle() {
-        return -(Math.pow(Math.abs(controller.getLeftY()), 1.5))
-                * Math.signum(controller.getLeftY());
+  private GamepadDriveControlBoard() {
+    if (Robot.isSimulation()) {
+      controller = new CommandSimXboxController(KOperator.kDriverControllerPort);
+    } else {
+      controller = new CommandXboxController(KOperator.kDriverControllerPort);
     }
+  }
 
-    @Override
-    public double getStrafe() {
-        return -(Math.pow(Math.abs(controller.getLeftX()), 1.5))
-                * Math.signum(controller.getLeftX());
-    }
+  @Override
+  public double getThrottle() {
+    return -(Math.pow(Math.abs(controller.getLeftY()), 1.5)) * Math.signum(controller.getLeftY());
+  }
 
-    @Override
-    public double getRotation() {
-        return -(Math.pow(Math.abs(controller.getRightX()), 2.0))
-                * Math.signum(controller.getRightX());
-    }
+  @Override
+  public double getStrafe() {
+    return -(Math.pow(Math.abs(controller.getLeftX()), 1.5)) * Math.signum(controller.getLeftX());
+  }
 
-    @Override
-    public double getRotationY() {
-        return -(Math.pow(Math.abs(controller.getRightY()), 2.0))
-                * Math.signum(controller.getRightY());
-    }
+  @Override
+  public double getRotation() {
+    return -(Math.pow(Math.abs(controller.getRightX()), 2.0)) * Math.signum(controller.getRightX());
+  }
 
-    @Override
-    public Trigger resetGyro() {
-        return controller.back().and(controller.start().negate());
-    }
+  @Override
+  public double getRotationY() {
+    return -(Math.pow(Math.abs(controller.getRightY()), 2.0)) * Math.signum(controller.getRightY());
+  }
+
+  @Override
+  public Trigger resetGyro() {
+    return controller.back().and(controller.start().negate());
+  }
 }

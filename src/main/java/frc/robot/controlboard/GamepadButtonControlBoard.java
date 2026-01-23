@@ -22,11 +22,10 @@
 
 package frc.robot.controlboard;
 
-import frc.robot.Constants;
 import frc.robot.Constants.KOperator;
 import frc.robot.Robot;
 import frc.lib.controller.CommandSimXboxController;
-import edu.wpi.first.math.filter.Debouncer.DebounceType;
+// import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -45,9 +44,6 @@ public class GamepadButtonControlBoard implements IButtonControlBoard {
     private final CommandXboxController controller;
 
     @SuppressWarnings("unused")
-    private final CommandXboxController additionalController;
-
-    @SuppressWarnings("unused")
     private GamepadButtonControlBoard() {
         if (Constants.kForceDriveGamepad
                 || DriverStation.getJoystickIsXbox(Constants.kDriveGamepadPort)) {
@@ -62,138 +58,6 @@ public class GamepadButtonControlBoard implements IButtonControlBoard {
             controller = new CommandXboxController(Constants.kOperatorControllerPort);
         }
     }
-
-    @Override
-    public Trigger getWantToXWheels() {
-        return controller.start().and(controller.back().negate());
-    }
-
-    @Override
-    public Trigger getWantToAutoAlign() {
-        return controller.start();
-    }
-
-    @Override
-    public Trigger score() {
-        return controller.rightTrigger();
-    }
-
-    @Override
-    public Trigger scoreBarge() {
-        return controller.b();
-    }
-
-    @Override
-    public Trigger reefIntakeAlgae() {
-        return controller.a();
-    }
-
-    @Override
-    public Trigger bargeManualStage() {
-        return controller.y();
-    }
-
-    @Override
-    public Trigger processorManualStage() {
-        return controller.x();
-    }
-
-    @Override
-    public Trigger stow() {
-        return controller.leftStick();
-    }
-
-    @Override
-    public Trigger intake() {
-        return controller.leftTrigger();
-    }
-
-    @Override
-    public Trigger intakeFunnel() {
-        return controller.povLeft();
-    }
-
-    @Override
-    public Trigger exhaust() {
-        return controller.povRight();
-    }
-
-    @Override
-    public Trigger climb() {
-        return controller.rightBumper();
-    }
-
-    @Override
-    public Trigger stageL1() {
-        return controller.x();
-    }
-
-    @Override
-    public Trigger stageL2() {
-        return controller.a();
-    }
-
-    @Override
-    public Trigger stageL3() {
-        return controller.b();
-    }
-
-    @Override
-    public Trigger stageL4() {
-        return controller.y();
-    }
-
-    @Override
-    public Trigger getCoralMode() {
-        return controller.start().and(controller.back().negate()).debounce(0.1);
-    }
-
-    @Override
-    public Trigger getAlgaeClimbMode() {
-        return controller.back().and(controller.start().negate()).debounce(0.1);
-    }
-
-    @Override
-    public Trigger getCoralManualMode() {
-        return controller.back().and(controller.start()).debounce(0.5, DebounceType.kBoth);
-    }
-
-    @Override
-    public Trigger autoAlignReefIntake() {
-        return controller.leftBumper();
-    }
-
-    @Override
-    public Trigger manualIntakeAlgae() {
-        return controller.rightStick();
-    }
-
-    @Override
-    public Trigger autoAlignLeft() {
-        return controller.leftBumper();
-    }
-
-    @Override
-    public Trigger groundIntakeDeployManual() {
-        return controller.povUp();
-    }
-
-    @Override
-    public Trigger descoreManual() {
-        return controller.rightBumper();
-    }
-
-    @Override
-    public Trigger groundIntakeDeploySpinManual() {
-        return controller.povDown();
-    }
-
-    @Override
-    public Trigger autoAlignRight() {
-        return controller.rightBumper();
-    }
-
-    @Override
     public Trigger leftStick() {
         return controller.leftStick();
     }
@@ -201,6 +65,46 @@ public class GamepadButtonControlBoard implements IButtonControlBoard {
     @Override
     public Trigger rightStick() {
         return controller.rightStick();
+    }
+
+    @Override
+    public Trigger leftBumper() {
+        return controller.leftBumper();
+    }
+
+    @Override
+    public Trigger rightBumper() {
+        return controller.rightBumper();
+    }
+
+    @Override
+    public Trigger leftTrigger() {
+        return controller.leftBumper();
+    }
+
+    @Override
+    public Trigger rightTrigger() {
+        return controller.rightBumper();
+    }
+
+    @Override
+    public Trigger a() {
+        return controller.a();
+    }
+
+    @Override
+    public Trigger b() {
+        return controller.b();
+    }
+
+    @Override
+    public Trigger x() {
+        return controller.x();
+    }
+
+    @Override
+    public Trigger y() {
+        return controller.y();
     }
 
     @Override
@@ -221,26 +125,6 @@ public class GamepadButtonControlBoard implements IButtonControlBoard {
     @Override
     public Trigger povRight() {
         return controller.povRight();
-    }
-
-    @Override
-    public Trigger autoAlignFeeder() {
-        return controller.rightStick().debounce(Constants.kPOVDebounceTimeSeconds);
-    }
-
-    @Override
-    public Trigger setDefaultRobotWide() {
-        return controller.povDown();
-    }
-
-    @Override
-    public Trigger setDefaultRobotTight() {
-        return controller.povUp();
-    }
-
-    @Override
-    public Trigger lollipopIntake() {
-        return controller.rightBumper();
     }
 
     @Override

@@ -25,77 +25,40 @@ package frc.robot.controlboard;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public interface IButtonControlBoard {
-    Trigger getWantToXWheels();
 
-    Trigger getWantToAutoAlign();
+  Trigger leftStick();
 
-    Trigger score();
+  Trigger rightStick();
 
-    Trigger scoreBarge();
+  Trigger leftBumper(); // autoAlignReefIntake
 
-    Trigger stow();
+  Trigger rightBumper(); // climb, descoreManual, lollipopIntake
 
-    Trigger intake();
+  Trigger leftTrigger(); // intake
 
-    Trigger intakeFunnel();
+  Trigger rightTrigger(); // score
 
-    Trigger exhaust();
+  Trigger a(); // reefIntakeAlgae
 
-    Trigger climb();
+  Trigger b(); // scoreBarge
 
-    Trigger stageL1();
+  Trigger x(); // processorManualStage
 
-    Trigger stageL2();
+  Trigger y(); // bargeManualStage
 
-    Trigger stageL3();
+  Trigger povUp(); // groundIntakeDeployManual, setDefaultRobotTight
 
-    Trigger stageL4();
+  Trigger povDown(); // groundIntakeDeploySpinManual, setDefaultRobotWide
 
-    Trigger getCoralMode();
+  Trigger povLeft(); // intakeFunnel
 
-    Trigger getAlgaeClimbMode();
+  Trigger povRight(); // exhaust
 
-    Trigger getCoralManualMode();
+  Trigger back();
 
-    Trigger autoAlignReefIntake();
+  Trigger start(); // getWantToAutoAlign
 
-    Trigger autoAlignLeft();
+  // start() aslo mapped to getWantToXWheels (when back() was not held)
 
-    Trigger groundIntakeDeployManual();
-
-    Trigger groundIntakeDeploySpinManual();
-
-    Trigger descoreManual();
-
-    Trigger autoAlignRight();
-
-    Trigger leftStick();
-
-    Trigger rightStick();
-
-    Trigger povUp();
-
-    Trigger povDown();
-
-    Trigger povLeft();
-
-    Trigger povRight();
-
-    Trigger reefIntakeAlgae();
-
-    Trigger manualIntakeAlgae();
-
-    Trigger bargeManualStage();
-
-    Trigger processorManualStage();
-
-    Trigger autoAlignFeeder();
-
-    Trigger setDefaultRobotWide();
-
-    Trigger setDefaultRobotTight();
-
-    Trigger lollipopIntake();
-
-    void setRumble(boolean rumble);
+  void setRumble(boolean rumble);
 }
