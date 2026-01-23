@@ -18,4 +18,6 @@ public interface DrivetrainIO {
 
   /** Run open loop at the specified voltage. */
   public default void setVoltage(double leftVolts, double rightVolts) {}
+
+  public default void resetEncoders() {}
 }

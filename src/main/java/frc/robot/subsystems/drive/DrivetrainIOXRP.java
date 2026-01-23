@@ -9,8 +9,8 @@ package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
-import frc.robot.util.XRPEncoder;
 import frc.robot.Constants;
+import frc.robot.util.XRPEncoder;
 
 public class DrivetrainIOXRP implements DrivetrainIO {
   private final XRPMotor leftMotor = new XRPMotor(Constants.KDrivetrain.kMotorLDeviceNum);
@@ -19,7 +19,16 @@ public class DrivetrainIOXRP implements DrivetrainIO {
   private final XRPEncoder rightEncoder = new XRPEncoder(Constants.KDrivetrain.kEncoderRDeviceNum);
 
   public DrivetrainIOXRP() {
+    // We need to invert one side of the drivetrain so that positive voltages
+    // result in both sides moving forward. Depending on how your robot's
+    // gearbox is constructed, you might have to invert the left side instead.
     rightMotor.setInverted(true);
+
+    // Use inches as unit for encoder distances
+    leftEncoder.setDistancePerPulse(Constants.KDrivetrain.kDistancePerPulse);
+    rightEncoder.setDistancePerPulse(Constants.KDrivetrain.kDistancePerPulse);
+
+    resetEncoders();
   }
 
   @Override
@@ -31,5 +40,11 @@ public class DrivetrainIOXRP implements DrivetrainIO {
     rightVolts = MathUtil.clamp(rightVolts, -6.0, 6.0);
     leftMotor.set(leftVolts / 6.0);
     rightMotor.set(rightVolts / 6.0);
+  }
+
+  @Override
+  public void resetEncoders() {
+    leftEncoder.reset();
+    rightEncoder.reset();
   }
 }

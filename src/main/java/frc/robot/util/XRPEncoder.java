@@ -31,6 +31,9 @@ public class XRPEncoder extends Encoder {
   private static record TimestampedCount(double timestamp, int count) {}
 
   public XRPEncoder(int deviceNum) {
+
+    // These two parameters are "channelA" and "channelB", the DIO digital input
+    // channels for reading the XRP's motor encoders.
     super(deviceNum * 2 + 4, deviceNum * 2 + 5);
 
     // Fast notifier: samples encoder and calculates raw velocity

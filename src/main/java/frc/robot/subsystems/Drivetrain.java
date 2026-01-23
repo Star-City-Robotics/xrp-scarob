@@ -32,9 +32,6 @@ public class Drivetrain extends SubsystemBase {
     SendableRegistry.addChild(m_diffDrive, m_leftMotor);
     SendableRegistry.addChild(m_diffDrive, m_rightMotor);
 
-    // We need to invert one side of the drivetrain so that positive voltages
-    // result in both sides moving forward. Depending on how your robot's
-    // gearbox is constructed, you might have to invert the left side instead.
     m_rightMotor.setInverted(true);
 
     // Use inches as unit for encoder distances
