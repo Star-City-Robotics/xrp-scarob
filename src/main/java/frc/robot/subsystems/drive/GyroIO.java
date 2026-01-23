@@ -30,24 +30,6 @@ public interface GyroIO {
 
   public default void updateInputs(GyroIOInputs inputs) {}
 
-  // /** The acceleration in the X-axis. */
-  public double getAccelX();
-
-  // /** The acceleration in the Y-axis. */
-  public double getAccelY();
-
-  // /** The acceleration in the Z-axis. */
-  public double getAccelZ();
-
-  // /** Current angle of the XRP around the X-axis. */
-  public double getGyroAngleX();
-
-  // /** Current angle of the XRP around the Y-axis. */
-  public double getGyroAngleY();
-
-  // /** Current angle of the XRP around the Z-axis. */
-  public double getGyroAngleZ();
-
   // /** Reset the gyro. */
   public default void resetGyro() {}
 }
