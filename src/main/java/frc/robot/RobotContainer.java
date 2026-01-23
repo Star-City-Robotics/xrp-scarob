@@ -21,6 +21,7 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.drive.DrivetrainIOXRP;
+import frc.robot.subsystems.drive.GyroIOXRP;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -51,7 +52,7 @@ public class RobotContainer {
       switch (Constants.robotType) {
         case XRP:
           // XRP robot, instantiate XRP IO implementations
-          drive = new Drive(new DrivetrainIOXRP());
+          drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
           break;
 
         case SIMBOT:
@@ -68,7 +69,7 @@ public class RobotContainer {
 
     // Create any subsystems that were missed in the above section
     if (drive == null) {
-      drive = new Drive(new DrivetrainIOXRP());
+      drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
     }
 
     // Setup SmartDashboard options

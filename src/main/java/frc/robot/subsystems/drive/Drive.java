@@ -17,6 +17,9 @@ public class Drive extends SubsystemBase {
   private final DrivetrainIO drivetrainIO;
   private final DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
 
+  private final GyroIO gyroIO;
+  private final GyroIOInputsAutoLogged gyroInputs = new GyroIOInputsAutoLogged();
+
   /**
    * IMPORTANT: We never use HID objects like this in a subsystem class. This code is provided as a
    * starting point, and we will discuss how to improve it very soon.
@@ -24,8 +27,9 @@ public class Drive extends SubsystemBase {
   private final GenericHID keyboard = new GenericHID(0);
 
   /** Creates a new Drive. */
-  public Drive(DrivetrainIO io) {
+  public Drive(GyroIO gyroIO, DrivetrainIO drivetrainIO) {
     this.drivetrainIO = drivetrainIO;
+    this.gyroIO = gyroIO;
   }
 
   @Override
@@ -51,6 +55,8 @@ public class Drive extends SubsystemBase {
 
   @Override
   public void periodic() {
+    gyroIO.updateInputs(gyroInputs);
+    Logger.processInputs("Drive/Gyro", gyroInputs);
     drivetrainIO.updateInputs(inputs);
     Logger.processInputs("Drive", inputs);
   }

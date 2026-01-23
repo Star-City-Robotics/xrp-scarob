@@ -1,26 +1,27 @@
-package frc.robot.subsystems.gyro;
+package frc.robot.subsystems.drive;
 
-import org.littletonrobotics.junction.Logger;
-
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.xrp.XRPGyro;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-// import edu.wpi.first.math.estimator.PoseEstimator3d;
-
-public class Gyro extends SubsystemBase {
-
-  // Set up the XRPGyro
+public class GyroIOXRP implements GyroIO {
   private final XRPGyro m_gyro = new XRPGyro();
-
-  // Set up the BuiltInAccelerometer
   private final BuiltInAccelerometer m_accelerometer = new BuiltInAccelerometer();
 
-  private final GyroIO gyroIO;
-  private final GyroIOInputsAutoLogged gyroInputs = new GyroIOInputsAutoLogged();
+  public GyroIOXRP() {}
 
-  public Gyro(GyroIO gyroIO) {
-    this.gyroIO = gyroIO;
+  @Override
+  public void updateInputs(GyroIOInputs inputs) {
+    inputs.connected = true;
+    inputs.yawPosition = Rotation2d.fromRotations(m_gyro.getAngleZ());
+    inputs.yawVelocityRadPerSec = 0.0;
+    inputs.pitchPosition = Rotation2d.fromRotations(m_gyro.getAngleY());
+    inputs.rollVelocityRadPerSec = 0.0;
+    inputs.rollPosition = Rotation2d.fromRotations(m_gyro.getAngleX());
+    inputs.pitchVelocityRadPerSec = 0.0;
+    inputs.accel =
+        new Translation3d(m_accelerometer.getX(), m_accelerometer.getY(), m_accelerometer.getZ());
   }
 
   /**
@@ -28,6 +29,7 @@ public class Gyro extends SubsystemBase {
    *
    * @return The acceleration of the XRP along the X-axis in Gs
    */
+  @Override
   public double getAccelX() {
     return m_accelerometer.getX();
   }
@@ -37,6 +39,7 @@ public class Gyro extends SubsystemBase {
    *
    * @return The acceleration of the XRP along the Y-axis in Gs
    */
+  @Override
   public double getAccelY() {
     return m_accelerometer.getY();
   }
@@ -46,6 +49,7 @@ public class Gyro extends SubsystemBase {
    *
    * @return The acceleration of the XRP along the Z-axis in Gs
    */
+  @Override
   public double getAccelZ() {
     return m_accelerometer.getZ();
   }
@@ -55,6 +59,7 @@ public class Gyro extends SubsystemBase {
    *
    * @return The current angle of the XRP in degrees
    */
+  @Override
   public double getGyroAngleX() {
     return m_gyro.getAngleX();
   }
@@ -64,6 +69,7 @@ public class Gyro extends SubsystemBase {
    *
    * @return The current angle of the XRP in degrees
    */
+  @Override
   public double getGyroAngleY() {
     return m_gyro.getAngleY();
   }
@@ -73,18 +79,14 @@ public class Gyro extends SubsystemBase {
    *
    * @return The current angle of the XRP in degrees
    */
+  @Override
   public double getGyroAngleZ() {
     return m_gyro.getAngleZ();
   }
 
   /** Reset the gyro. */
+  @Override
   public void resetGyro() {
     m_gyro.reset();
-  }
-
-  @Override
-  public void periodic() {
-    gyroIO.updateInputs(gyroInputs);
-    Logger.processInputs("Drive/Gyro", gyroInputs);
   }
 }
