@@ -15,6 +15,15 @@ package frc.robot;
 public final class Constants {
   public static final class KOperator {
     public static final int kDriverControllerPort = 0;
+
+  public class KController {
+    public static final SimControllerType kSimControllerType = SimControllerType.XBOX;
+    // or: SimControllerType.DUAL_SENSE, SimControllerType.JOYSTICK, SimControllerType.KEYBOARD;
+
+    public enum SimControllerType {
+      XBOX,
+      DUAL_SENSE
+    }
   }
 
   /** Period of main loop in milliseconds */
