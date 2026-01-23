@@ -45,17 +45,15 @@ public class GamepadButtonControlBoard implements IButtonControlBoard {
 
   @SuppressWarnings("unused")
   private GamepadButtonControlBoard() {
-        if (Constants.kForceDriveGamepad
-                || DriverStation.getJoystickIsXbox(Constants.kDriveGamepadPort)) {
+    if (KOperator.kForceDriveGamepad
+        || DriverStation.getJoystickIsXbox(KOperator.kDriverControllerPort)) {
       if (Robot.isSimulation()) {
-                controller = new CommandSimXboxController(Constants.kDriveGamepadPort);
+        controller = new CommandSimXboxController(KOperator.kDriverControllerPort);
       } else {
-                controller = new CommandXboxController(Constants.kDriveGamepadPort);
+        controller = new CommandXboxController(KOperator.kDriverControllerPort);
       }
-            additionalController =
-                    new CommandXboxController(Constants.kGamepadAdditionalControllerPort);
     } else {
-            controller = new CommandXboxController(Constants.kOperatorControllerPort);
+      controller = new CommandXboxController(KOperator.kOperatorControllerPort);
     }
   }
 
