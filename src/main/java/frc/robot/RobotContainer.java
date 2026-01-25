@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.xrp.XRPOnBoardIO;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousDistance;
 import frc.robot.commands.AutonomousTime;
+import frc.robot.controlboard.ControlBoard;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.drive.DrivetrainIOXRP;
@@ -38,9 +38,20 @@ public class RobotContainer {
   // Assumes a gamepad plugged into channel 0
   private final Joystick m_controller = new Joystick(0);
 
+  private final ControlBoard controlBoard = ControlBoard.getInstance();
+
   // Create SmartDashboard chooser for autonomous routines
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
   private final LoggedDashboardChooser<Command> autoChooser;
+
+  public ControlBoard getControlBoard() {
+    // Set Constants.KOperator.kForceDriveGamepad to false to split controls. if so:
+    //
+    // - the driver only controls movement
+    //
+    // - and the operator only controls buttons.
+    return controlBoard;
+  }
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -54,12 +65,14 @@ public class RobotContainer {
 
         case SIMBOT:
           // Simulated robot, instantiate sim IO implementations
+          //
           // TODO: replace with SIMBOT implementation later
           drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
           break;
 
         case REALBOT:
           // Real robot, instantiate hardware IO implementations
+          //
           // TODO: replace with REALBOT implementation later
           drive = new Drive(new GyroIOXRP(), new DrivetrainIOXRP());
           break;
@@ -101,13 +114,13 @@ public class RobotContainer {
         .onTrue(new PrintCommand("USER Button Pressed"))
         .onFalse(new PrintCommand("USER Button Released"));
 
-    JoystickButton joystickAButton = new JoystickButton(m_controller, 1);
-    joystickAButton
+    controlBoard
+        .a()
         .onTrue(new InstantCommand(() -> m_arm.setAngle(45.0), m_arm))
         .onFalse(new InstantCommand(() -> m_arm.setAngle(0.0), m_arm));
 
-    JoystickButton joystickBButton = new JoystickButton(m_controller, 2);
-    joystickBButton
+    controlBoard
+        .b()
         .onTrue(new InstantCommand(() -> m_arm.setAngle(90.0), m_arm))
         .onFalse(new InstantCommand(() -> m_arm.setAngle(0.0), m_arm));
   }
@@ -119,7 +132,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return autoChooser.get();
-    // return Commands.none();
   }
 
   /**
@@ -129,6 +141,6 @@ public class RobotContainer {
    */
   public Command getArcadeDriveCommand() {
     return new ArcadeDrive(
-        drive, () -> -m_controller.getRawAxis(1), () -> -m_controller.getRawAxis(2));
+        drive, () -> controlBoard.getThrottle(), () -> controlBoard.getRotation());
   }
 }

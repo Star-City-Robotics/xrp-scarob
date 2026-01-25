@@ -9,9 +9,7 @@ package frc.robot.subsystems.drive;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
-// import org.littletonrobotics.junction.AutoLogOutput;
 
 public class Drive extends SubsystemBase {
 
