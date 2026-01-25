@@ -17,7 +17,7 @@ public class ArcadeDrive extends Command {
    * Creates a new ArcadeDrive. This command will drive your robot according to the speed supplier
    * lambdas. This command does not terminate.
    *
-   * @param drivetrain The drivetrain subsystem on which this command will run
+   * @param drive The drivetrain subsystem on which this command will run
    * @param xaxisSpeedSupplier Lambda supplier of forward/backward speed
    * @param zaxisRotateSupplier Lambda supplier of rotational speed
    */
