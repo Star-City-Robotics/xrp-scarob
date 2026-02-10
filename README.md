@@ -12,16 +12,17 @@ For now, everything is set up around the pull requests that created the code. Th
 
 It's also, unfortunately, not organized according to what is beginner friendly. This table should help team members find the sections that are most appropriate to begin next. See [Organization](#organization) for more info on what everything means.
 
-| $$\S$$          | Value                          | Level                    | Categories                   |
-|:----------------|:-------------------------------|:-------------------------|:-----------------------------|
+| $$\S$$               | Value                          | Level                    | Categories                   |
+| :------------------- | :----------------------------- | :----------------------- | :--------------------------- |
 | [1](#section-1) `**` | :star:                         | :star:                   | :thermometer: :video_game:   |
-| [2](#section-2) `*` | :star::star::star:             | :star::star::star:       | :bar_chart:                  |
-| [3](#section-3) `*` | :star::star:                   | :star::star:             | :thermometer: :octocat:      |
-| [4](#section-4) `*` | :star::star::star::star::star: | :star::star::star:       | :bar_chart: :gear: :compass: |
-| [5](#section-5) `*` | :star:                         | :star:                   | :thermometer:                |
+| [2](#section-2) `*`  | :star::star::star:             | :star::star::star:       | :bar_chart:                  |
+| [3](#section-3) `*`  | :star::star:                   | :star::star:             | :thermometer: :octocat:      |
+| [4](#section-4) `*`  | :star::star::star::star::star: | :star::star::star:       | :bar_chart: :gear: :compass: |
+| [5](#section-5) `*`  | :star:                         | :star:                   | :thermometer:                |
 | [6](#section-6) `**` | :star::star::star::star:       | :star::star::star::star: | :coffee: :video_game:        |
-| [7](#section-7) `*` | :star::star:                   | :star:                   | :thermometer: :books:        |
-| [8](#section-8) `*` | :star::star::star::star:       | :star::star::star:       | :coffee: :video_game:        |
+| [7](#section-7) `*`  | :star::star:                   | :star:                   | :thermometer: :books:        |
+| [8](#section-8) `*`  | :star::star:                   | :star:                   | :thermometer: :books:        |
+| [9](#section-9) `**`  | :star::star::star::star:       | :star::star::star:       | :coffee: :video_game:        |
 
 > `*` Needs a draft
 > `**` Needs to be edited
@@ -84,11 +85,11 @@ The guide in [doc/windows-setup.md](doc/windows-setup.md) describes how to insta
 
 |                | Windows | MacOS | Linux | CLI | Free     |
 | -------------: | :------ | :---- | :---- | :-- | -------- |
-| Github Desktop | :+1:    | :+1:  |       | :v: |          |
-|     Sourcetree | :+1:    | :+1:  |       |     |          |
+| Github Desktop | :+1:    | :+1:  |       | :v: | :+1:     |
+|     Sourcetree | :+1:    | :+1:  |       |     | :+1:     |
 |     Git Kraken | :+1:    | :+1:  | :+1:  |     | :+1: `*` |
 
-> `*` Git Kraken is free
+> `*` Git Kraken is free for non-commercial use, but requires an account.
 
 ## Course Sections
 
