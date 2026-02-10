@@ -29,6 +29,9 @@ First, plan the export
 + Which sets of parts need to be exported as groups? Typically, each set of parts that would move as a group needs to be a separate STEP export.
 + Are there highly detailed parts like circuit boards? These should typically be left out, if possible.
 
+> It's really important that the STEP files are exported from the same assembly, so all
+> the exports exist in a unified coordinate system.
+
 For each group of parts:
 
 + Open their assemblies, note their relationship to the assemblies' origins
@@ -45,13 +48,13 @@ Before export, think about how to manage the document(s).
 + By accessing the document, would you lock it to other users?
 + Do you need to export from multiple separate Onshape Documents? It's possible you may need to add assemblies or part studios in order to export parts combined together, especially if multiple STEP files need to be in the same STEP export.
 
-If any of these are true, it may be best to copy the Onshape Workspace into a new workspace that retains the same visibility and organizational details.
+If any of these are true, it may be best to copy the Onshape Workspace into a new workspace that retains the same visibility and organizational details.  Again, there really needs to be single assembly.
 
 How would you repeat the process in the future? If this is necessary, you *may not* want to create a branch, but I'm not sure how & whether that locks the document.
 
 Each group of parts would need to be in the same assembly in order to export. If a branch or new document is created, repeating the process in the future is more difficult. Usually, there's no way to avoid repeated work. If they're in the same assembly, the process is as simple as selecting *parts* and exporting. If STEP files must be converted to `glTF` and then combined, this is much more difficult: you may lose the unified coordinate system, for example.
 
-### For Each Group of Parts, Export
+### For Each Group of Parts, Export A STEP
 
 + Select the parts from `Instances (n)` and only those parts.
 + Right click. Click `Export...`.
@@ -67,6 +70,8 @@ Open CAD Assistant
 
 ## Convert to `glTF`
 
+> The `*.glb` files should total less than `10MB` if stored in a repository. They are binary and `git` will retain each change as individual copies of the files.
+
 For each exported `STEP` file:
 
 + Click open, select the file, open it
@@ -80,8 +85,9 @@ Clicking the top-level instance for the XRP wheels originally exported the sourc
 
 + This could be fixed in the `XRPMechanism` code. It's possible that rotating the part in code would either cause one wheel to drive backwards or overcomplicate the code.
 + Instead, the parts were re-exported by clicking each wheel instances' sub parts.
++ The o-ring was omitted because it's instance was hidden in the wheel's part studio
 
-# VS Code
+## Organize The Assets
 
 Each `glb` part on the main model has `rotations` and `position`. AFAIK, only the top-level `glb` can have child `glb` models associated to it -- i.e. it's a flat tree.
 
@@ -95,10 +101,72 @@ Each `glb` part on the main model has `rotations` and `position`. AFAIK, only th
 |  XRP-line-sensor.step | line sensor   | model_4.glb |
 | XRP-sonar-sensor.step | sonar sensor  | model_5.glb |
 
-The parts need to be renamed as `model.glb` and `model_n.glb`. This is confusing, so the original parts are in `./ascope/assets/xrp-bot-source`. The final parts need to reside in a directory prefixed by `Robot_`, so these are in `Robot_XRPBot`
+The parts need to be renamed as `model.glb` and `model_n.glb`. This is confusing, so the original parts are in `./ascope/assets/xrp-bot-source`. The final parts need to reside in a directory prefixed by `Robot_`, so these are in `Robot_XRPBot`.
 
-## Configure the model
+# Configure The Model
 
-###
+Once imported, AdvantageScope watches for changes to `config.json` and will redisplay the model when the files change. This occurs any time you change: `rotations`,  `position`, `zeroedRotations`, `zeroedPositions`.
 
-## Create
+It also reloads when the individual `*.glb` files are changed, it's sufficient to toggle the robot between models in AdvantageScope.
+
+Keep in mind **rotations** are applied *before* **positions**, where the latter corresponds to the translations.
+
+## Setup The JSON
+
+In `./ascope/assets/Robot_XRPBot`, create `config.json`. Start with empty arrays for `cameras` and `components`:
+
+```jsonc
+{
+  "name": "XRP Bot",
+  "isFTC": false,
+  // AdvantageScope culls most of the model, as it's too small
+  "disableSimplification": true,
+  "position": [0.0, 0.0, 0.045],
+  "rotations": [
+    { "axis": "x", "degrees": 90 },
+    { "axis": "z", "degrees": 90 }
+  ],
+  "cameras": [],
+  "components": []
+}
+```
+
+Then for each `*.glb` file, add a default entry in `components`
+
+```jsonc
+// components: [
+{
+  "zeroedRotations": [
+    { "axis": "x", "degrees": 90 },
+    { "axis": "z", "degrees": 90 }
+  ],
+  "zeroedPosition": [ 0.0, 0.0, 0.0 ]
+}
+// , {...}, ... ]
+```
+
+Ensure all comments are removed from the JSON files.
+
+Since all of the STEP file's parts were exported from the final assembly, then all of their exports have unifed coordinate systems.
+
+## Set Zeroed `Pose2d` for the Robot
+
+In our competition code, `Drive.java` also exports the position using the `Odometry/Robot` key.
+
+```java
+   @AutoLogOutput(key = "Odometry/Robot")
+   public Pose2d getPose() {
+     return Pose2d.kZero;
+     // return poseEstimator.getEstimatedPosition();
+   }
+```
+
+We'll set the estimated pose i  a later section, after completing the drivetrain and adding some simulation logic ,
+
+## Import into AdvantageScope
+
++ Copy the `ascope/assets/Robot_XRPBot` directory into `~/.config/AdvantageScope/userAssets`
++ When settig up the `Mechanism3d`, edit one copy of files to make adjustments, then commit.
++ Set the field to `Evergreen` or `Axes`
+
+The XRP Robot is tiny.

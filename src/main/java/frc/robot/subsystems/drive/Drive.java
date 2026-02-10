@@ -8,6 +8,8 @@
 package frc.robot.subsystems.drive;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.AutoLogOutput;
@@ -68,6 +70,6 @@ public class Drive extends SubsystemBase {
   /** Returns the current odometry pose. */
   @AutoLogOutput(key = "Odometry/Robot")
   public Pose2d getPose() {
-    return Pose2d.kZero;
+    return new Pose2d(new Translation2d(1, 1), new Rotation2d(Math.PI / 4));
   }
 }
