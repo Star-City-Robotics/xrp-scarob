@@ -130,9 +130,9 @@ This is a small change to generate UML diagrams for code. Those can really help 
 
 [PR 06](https://github.com/Star-City-Robotics/xrp-scarob/pull/6) $$\longrightarrow$$ [Create a ControlBoard using Interface Composition](doc/pr/06-create-a-controlboard-using-interface-composition.md)
 
-This is the first PR to really focus on Java itself. This introduces a *design pattern*  called *Interface Composition*, which is useful...
+This is the first PR to really focus on Java itself. This introduces a *design pattern* called *Interface Composition*, which is useful.
 
-... but TBH it's not the best design pattern, as it's a bit constraining if used improperly. Here, it allows us to define game controller logic that can be implemented by a combination of controller implementations.
+... but TBH it's not the best design pattern. It's a bit constraining if used improperly. Here, it allows us to define game controller logic that can be implemented by a combination of controller implementations. Specifically, by changing `Constants.KOperator.kForceDriveGamepad`, a single line, we can split the controls into one gamepad each for the driver and operator.
 
 #### Section 7
 
@@ -140,7 +140,11 @@ This is the first PR to really focus on Java itself. This introduces a *design p
 
 #### Section 8
 
-[PR 08](https://github.com/Star-City-Robotics/xrp-scarob/pull/8) $$\longrightarrow$$ [Using Singletons to Access The Controlboard](doc/pr/08-using-singletons-to-access-the-controlboard.md)
+[PR 08](https://github.com/Star-City-Robotics/xrp-scarob/pull/8) $$\longrightarrow$$ [Edit Docs To Add Windows Setup](doc/pr/08-edit-docs-to-add-windows-setup.md)
+
+#### Section 9
+
+[PR 09](https://github.com/Star-City-Robotics/xrp-scarob/pull/9) $$\longrightarrow$$ [Using Singletons to Access The Controlboard](doc/pr/09-using-singletons-to-access-the-controlboard.md)
 
 This is the second PR to focus on Java programming -- and still fairly advanced. This introduces the **Singleton design pattern**, which we can use to access *some objects* from **anywhere** in our code.
 
