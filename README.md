@@ -28,6 +28,16 @@ It's also, unfortunately, not organized according to what is beginner friendly. 
 
 Eventually, this system will probably transition towards reorganizing the content into a course in [Star-City-Robotics/robo-dojo](https://github.com/Star-City-Robotics/robo-dojo). For now, it's just simpler to lay this out alongside the code.
 
+#### Advanced Topics
+
+
++ If you're a beginner, feel free to skip these sections.
++ If you're not a beginner, some of this content may not be worthwhile to learn, espeicially during the on-season.
+
+Some of these advanced skills are incredibly valuable for some, but will impair team productivity if we all focus on them or if it's not made clear. Consider them to be a sidequest.
+
+#### Categories
+
 |                    | Category       | Summary                                     |
 |--------------------|----------------|---------------------------------------------|
 | :video_game:       | Controls       | Controllers, `Command` and `Trigger`        |
@@ -45,7 +55,39 @@ Eventually, this system will probably transition towards reorganizing the conten
 | :dependabot:       | Automation     | Github Actions or scripts                   |
 | :thermometer:      | Boilerplate    | Small commits for project functionality     |
 
-### Sections
+## Getting Started
+
+### Set up WPILib
+
+Find the [most recent WPILib Release](https://github.com/wpilibsuite/allwpilib/releases/tag/v2026.2.1) on their Github "Releases" page. From there, follow the [WPILib Installation Guide](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html).
+
+Before you write code, check out and open some of the apps.  They should be added to your OS's start menu. They can also be launched from within VS Code if they need a "Project Context." The most important ones for us are: ElasticDashboard, AdvantageScope,
+
+If you'd like, read the [New for 2026 notes](https://docs.wpilib.org/en/stable/docs/yearly-overview/yearly-changelog.html) for the season. This is great for returning team members.
+
+You'll also need PathPlanner, installed separately by following [this guide](https://pathplanner.dev/gui-getting-started.html).
+
+Another important app is PhotonVision. This runs a web server and it's a bit hard to use without a field & AprilTags. Fortunately, we can simulate this from within the Java code. If a project that should contain simulated photonvision code is compiled and started, then you should be able to see the video stream at [localhost:1181](http://localhost:)
+
+> Note: normally you wouldn't run all these apps with an XRP project, but we're working on building a framework that *should* be simple to use while also allowing you to practice using these other apps.
+
+### Set up `git`
+
+Download and setup Git -- see instructions for [Windows](https://git-scm.com/install/windows), [Mac OS](https://git-scm.com/install/mac), and [Linux](https://git-scm.com/install/linux)
+
+### Set up a `git` GUI
+
++ Download a Git GUI
+
+|                | Windows | MacOS | Linux | CLI | Free     |
+| -------------: | :------ | :---- | :---- | :-- | -------- |
+| Github Desktop |         |       |       | :v: |          |
+|     Sourcetree |         |       |       |     |          |
+|     Git Kraken | :+1:    | :+1:  | :+1:  |     | :+1: `*` |
+
+> `*` Git Kraken is free
+
+## Course Sections
 
 Each section has two links:
 
