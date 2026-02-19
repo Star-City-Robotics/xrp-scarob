@@ -30,11 +30,10 @@ Eventually, this system will probably transition towards reorganizing the conten
 
 #### Advanced Topics
 
++ If you're a beginner, skip sections labeled advanced. Consider them to be a sidequest for later.
++ If you're not a beginner, some of this content may not be worthwhile to learn during the on-season.
 
-+ If you're a beginner, feel free to skip these sections.
-+ If you're not a beginner, some of this content may not be worthwhile to learn, espeicially during the on-season.
-
-Some of these advanced skills are incredibly valuable for some, but will impair team productivity if we all focus on them or if it's not made clear. Consider them to be a sidequest.
+Some of these advanced skills are incredibly valuable, but many other tools cover these bases. CLI is great: balancing CLI usage with GUI early on will help you learn much faster.
 
 #### Categories
 
@@ -57,6 +56,8 @@ Some of these advanced skills are incredibly valuable for some, but will impair 
 
 ## Getting Started
 
+Start with [doc/windows-setup.md](./doc/windows-setup.md) if you haven't configured installed WPILib yet. This also includes other recommended software tools
+
 ### Set up WPILib
 
 Find the [most recent WPILib Release](https://github.com/wpilibsuite/allwpilib/releases/tag/v2026.2.1) on their Github "Releases" page. From there, follow the [WPILib Installation Guide](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html).
@@ -73,7 +74,9 @@ Another important app is PhotonVision. This runs a web server and it's a bit har
 
 ### Set up `git`
 
-Download and setup Git -- see instructions for [Windows](https://git-scm.com/install/windows), [Mac OS](https://git-scm.com/install/mac), and [Linux](https://git-scm.com/install/linux)
+Download and setup Git. Here are official guides for: [Windows](https://git-scm.com/install/windows), [Mac OS](https://git-scm.com/install/mac), and [Linux](https://git-scm.com/install/linux).
+
+The guide in [doc/windows-setup.md](doc/windows-setup.md) describes how to install almost everything using `winget`. This may be faster.
 
 ### Set up a `git` GUI
 
@@ -81,8 +84,8 @@ Download and setup Git -- see instructions for [Windows](https://git-scm.com/ins
 
 |                | Windows | MacOS | Linux | CLI | Free     |
 | -------------: | :------ | :---- | :---- | :-- | -------- |
-| Github Desktop |         |       |       | :v: |          |
-|     Sourcetree |         |       |       |     |          |
+| Github Desktop | :+1:    | :+1:  |       | :v: |          |
+|     Sourcetree | :+1:    | :+1:  |       |     |          |
 |     Git Kraken | :+1:    | :+1:  | :+1:  |     | :+1: `*` |
 
 > `*` Git Kraken is free

@@ -4,7 +4,7 @@
 
 ## Overview
 
-Please read the [Git Overview](../git-overview.md) if you haven't already
+Please read the [Git Overview](../git/01-overview.md) if you haven't already
 
 ## Template
 

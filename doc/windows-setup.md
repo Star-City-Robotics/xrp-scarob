@@ -100,7 +100,7 @@ Make sure you can open these apps:
 
 # Git and Diff
 
-> NOTE: This guide on `git` should get the software installed on your machine. Read through [git-overview.md](./git-overview.md) after completing this guide.
+> NOTE: This guide on `git` should get the software installed on your machine. Read through [git-01-overview.md](./git-01-overview.md) after completing this guide.
 
 These apps allow you to view a repositories branches, make commits and `fetch` changes from the repository.
 
@@ -111,6 +111,8 @@ winget install -e --id GitHub.GitHubDesktop
 ```
 
 Now that you've installed `git` for windows, you should be able to right-click on a project's root directory to open it in `GitBash` or `gitk`, the GUI.
+
+The Github Desktop tutorial provides a useful tutorial that walks you through the most basic steps. Run through that next if you've never used `git` before.
 
 ## Test cloning a directory
 
@@ -147,7 +149,7 @@ This actually requires a bit more setup later on to force a password prompt ever
 
 ## Sourcetree
 
-Two things to setup here: (1) the installation of Git to use (2) Authentication for Github
+Two things to setup here: (1) the installation of Git to use and (2) Authentication for Github
 
 ### SourceTree: Installation of Git
 
@@ -171,7 +173,7 @@ This can be tested by running `git fetch` with Sourcetree:
 + Open a repository in Sourcetree that you cloned
 + Under remotes, right-click `origin` and select `fetch`.
 
-Anyone can fetch for the `MechanicalAdvantage/AdvantageKit` repository. Only when the `Github Authentication` is setup can you fetch for `Star-City-Robotics/SCAROB-2026`.
+Anyone can `clone` or `fetch` the `MechanicalAdvantage/AdvantageKit` repository. Only when `Github Authentication` is set up can you fetch for `Star-City-Robotics/SCAROB-2026`. When using `git-credential-manager`, account set up in Sourcetree should not be necessary.
 
 > TODO: This may not be correct. You should be able to `fetch` from here, but I need to see the app to be sure about the menu.
 
@@ -356,9 +358,7 @@ This is a brief overview of some concepts regarding windows security. Keep in mi
 
 ### Administrator Priviledges
 
-This is distinguished from the `login` capability below. Some apps that WPILib runs require elevanted permissions. Any application that runs
-
-..........
+This is distinguished from the `login` capability below. Some apps that WPILib includes require elevanted permissions. Any application that modifies network configuration or interacts directly with devices will require approval via the Secure Desktop.
 
 ### Local Administrator Login
 
