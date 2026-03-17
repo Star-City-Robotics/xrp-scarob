@@ -3,8 +3,8 @@
 ## Resources
 
 + [AdvantageKit Sources](doc/pr/img/FRC-NetworkTables.pdf): These sources are available after setting up & merging the AdvantageKit TalonFX and PhotonVision templates.
-+ [Robot Simulator Keyboard Bindings](doc/pr/img/FRC-RobotSimulator-Controls.pdf): as set in this project's simgui-ds.json
-+ [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html): explanations on conventions for variable names and basic programming practices
++ [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html): explanations on conventions for variable names and basic programming practices.
++ [LearnGitBranching.js.org](https://learngitbranching.js.org): an amazing interactive git tutorial.
 
 ## Course
 
@@ -102,6 +102,8 @@ Each section has two links:
 [PR 01](https://github.com/Star-City-Robotics/xrp-scarob/pull/1) $$\longrightarrow$$ [Configure the Robot Simulator's Keybindings](doc/pr/01-configure-the-robot-simulators-keybindings.md)
 
 Read through this for an explanation of mapping controls in the simulator, especially if you need to map the keyboard controls.
+
++ [Robot Simulator Keyboard Bindings](doc/pr/img/FRC-RobotSimulator-Controls.pdf): as set in this project's `simgui-ds.json`.
 
 #### Section 2
 

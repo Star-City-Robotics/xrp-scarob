@@ -100,7 +100,7 @@ Make sure you can open these apps:
 
 # Git and Diff
 
-> NOTE: This guide on `git` should get the software installed on your machine. Read through [git-01-overview.md](./git-01-overview.md) after completing this guide.
+> NOTE: This guide on `git` should get the software installed on your machine. Read through [git/01-overview.md](./git/01-overview.md) after completing this guide.
 
 These apps allow you to view a repositories branches, make commits and `fetch` changes from the repository.
 
