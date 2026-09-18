@@ -7,8 +7,12 @@
 
 package frc.robot.subsystems.drive;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
 
 public class Drive extends SubsystemBase {
@@ -61,5 +65,11 @@ public class Drive extends SubsystemBase {
   // TODO: refactor with Lombok to properly use "delegate" pattern with @Delegate
   public void resetEncoders() {
     this.drivetrainIO.resetEncoders();
+  }
+
+  /** Returns the current odometry pose. */
+  @AutoLogOutput(key = "Odometry/Robot")
+  public Pose2d getPose() {
+    return new Pose2d(new Translation2d(1, 1), new Rotation2d(Math.PI / 4));
   }
 }
